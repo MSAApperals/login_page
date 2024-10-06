@@ -3,44 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Page</title>
+    <title>Working Page with Moving Gears</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #f0f0f0; 
-            margin: 0; 
-            padding: 0;
+        body {
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            flex-direction: column;
-        }
-        .container { 
-            background: #ffffff; 
-            padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden; /* Prevents scrolling */
+            position: relative; /* Required for absolute positioning of gears */
         }
-        h1 { color: #333; }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #28a745;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
+        
+        .container {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1s forwards;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            position: relative;
+            z-index: 1; /* Ensures content appears above gears */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: zoomIn 1s forwards;
+            animation-delay: 0.5s; /* Delayed animation for the image */
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            animation: slideIn 1s forwards;
+            animation-delay: 1s; /* Delayed animation for the text */
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Gear styles */
+        .gear {
+            position: absolute;
+            border: 10px solid #666;
+            border-radius: 50%;
+            background-color: transparent;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: spin 5s linear infinite;
+        }
+
+        /* Individual gear sizes and positions */
+        .gear-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-duration: 4s;
+        }
+
+        .gear-2 {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            left: 40%;
+            animation-duration: 5s;
+        }
+
+        .gear-3 {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            left: 70%;
+            animation-duration: 6s;
+        }
+
+        .gear-4 {
+            width: 140px;
+            height: 140px;
+            top: 30%;
+            left: 80%;
+            animation-duration: 7s;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Gear teeth using pseudo-elements */
+        .gear::before,
+        .gear::after {
+            content: '';
+            position: absolute;
+            border: 10px solid transparent;
+            border-top-color: #666;
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Create teeth effect */
+        .gear::before {
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .gear::after {
+            width: 20px;
+            height: 20px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+        }
+
+        /* Responsive positioning for mobile devices */
+        @media (max-width: 768px) {
+            .gear {
+                width: 50px;
+                height: 50px;
+            }
+            .gear-1 {
+                top: auto;
+                left: 0;
+                bottom: 0;
+                transform: translateY(20%) rotate(0deg);
+            }
+            .gear-2 {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                transform: translateY(20%) rotate(0deg);
+            }
+            .gear-3 {
+                top: 0;
+                left: auto;
+                right: 0;
+                transform: translateY(20%) rotate(0deg);
+            }
+            .gear-4 {
+                top: 0;
+                left: 0;
+                transform: translateY(20%) rotate(0deg);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Shopping Website!</h1>
-        <p>Start exploring our exclusive offers.</p>
-        <a href="#">Start Shopping</a>
+        <img src="people-working-on-a-construction-project-female-engineer-standing-construction-and-architecture-animation-free-video.jpg" alt="Description of the image">
+        <h1>The page is still working by MSA FOR FUTURE UPDATES</h1>
     </div>
+
+    <!-- Gears -->
+    <div class="gear gear-1"></div>
+    <div class="gear gear-2"></div>
+    <div class="gear gear-3"></div>
+    <div class="gear gear-4"></div>
 </body>
 </html>
